@@ -3,7 +3,7 @@
 <head>
   <title>My first Vue app</title>
   <script src="./js/vue.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
 </head>
 <body>
@@ -12,10 +12,24 @@
   </div>
 
   <script>
+    var link = 'https://jsonplaceholder.typicode.com/users';
     var app = new Vue({
       el: '#app',
       data: {
         message: 'Hello Vue!'
+      },
+      methods:{
+        getUsers: function(){
+            this.$http.get(link).then(function(response){
+                this.list = response.data;
+                console.log(response.data)
+            }, function(error){
+                console.log(error.statusText);
+            });
+        }
+      },
+      mounted: function () {
+        this.getUsers();
       }
     })
   </script>
