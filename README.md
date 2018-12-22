@@ -1,7 +1,7 @@
 # Vue.js-Demo
 Vue.js Demo 
 
-#### it has to include:
+#### It has to include:
 1. Data binding from data server example
 ```html
 <div id="app">
@@ -19,6 +19,7 @@ Vue.js Demo
 
 2. Two data server example (python, java)
 
+java example
 ```java
 static class Root implements HttpHandler {
         @Override
@@ -52,6 +53,7 @@ static class Root implements HttpHandler {
     }
 ```
 
+python example
 ```python
 class MyHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
