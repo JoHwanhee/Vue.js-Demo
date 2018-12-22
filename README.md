@@ -1,11 +1,11 @@
 # Vue.js-Demo
 Vue.js Demo 
 
-#### Data binding from data server
+#### include
+1. Data binding from data server
+2. Two data server example (python, java)
 
-#### Two data server example (python, java)
-
-Sample data
+#### Sample data
 ```json
 {
     "person": {
@@ -18,6 +18,6 @@ Sample data
 }
 ```
 
-Result
+#### Result
 
 ![](./images/result.jpg)
