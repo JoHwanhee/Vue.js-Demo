@@ -1,37 +1,72 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>My first Vue app</title>
   <script src="./js/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
+  <style media="screen">
+    .personcard {
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+    }
+
+    .personcard h1 {
+      margin: auto;
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
   <div id="app">
-    {{ message }}
+    <div class="personcard">
+      <h1> {{ message }} </h1>
+      <ol>
+        <li>이름 : {{ name }}</li>
+        <li>나이 : {{ age }}</li>
+        <li>최근 관심사 : {{ interesting }}</li>
+        <li>주소 : {{ address }}</li>
+      </ol>
+    </div>
   </div>
 
   <script>
-    var link = 'https://jsonplaceholder.typicode.com/users';
+    var link = 'http://localhost:8080';
     var app = new Vue({
       el: '#app',
       data: {
+        address: '',
+        age: 0,
+        interesting: '',
+        name: '',
         message: 'Hello Vue!'
       },
-      methods:{
-        getUsers: function(){
-            this.$http.get(link).then(function(response){
-                this.list = response.data;
-                console.log(response.data)
-            }, function(error){
-                console.log(error.statusText);
+      methods: {
+        getData: function() {
+          this.intervalid1 = setInterval(() => {
+            this.$http.get(link).then(function(response) {
+              console.log('get')
+              person = response.data["person"];
+              this.age = person["age"];
+              this.interesting = person["interesting"];
+              this.name = person["name"];
+              this.address = person["address"];
+              this.message = person["message"];
+            }, function(error) {
+              console.log(error.statusText);
             });
+          }, 100);
         }
       },
-      mounted: function () {
-        this.getUsers();
+      mounted: function() {
+        this.getData();
       }
     })
   </script>
 </body>
+
 </html>
